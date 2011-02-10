@@ -1,6 +1,4 @@
-﻿// F# の詳細 (http://fsharp.net)
-
-module FParsec.Applicative
+﻿module FParsec.Applicative
 
 open System
 open FParsec.Primitives
@@ -9,7 +7,7 @@ open Microsoft.FSharp.Core.Operators.Unchecked
 /// ap :: Monad m => m (a -> b) -> m a -> m b
 let inline ap f a = f >>= fun f' -> a >>= fun a' -> preturn (f' a') 
 
-//(<*>) :: Applicative f => f (a -> b) -> f a -> f b
+/// (<*>) :: Applicative f => f (a -> b) -> f a -> f b
 let inline (<*>) f a = ap f a
 
 /// (<**>) :: Applicative f => f a -> f (a -> b) -> f b
@@ -88,12 +86,6 @@ let guardA b = unlessA b (preturn ())
 /// whenA :: Applicative f => Bool -> f () -> f ()
 let whenA b a = if b then a else preturn ()
 
-
-
-
-
-
-
 //let (<*>) f a = 
 //    parse { 
 //        let! f' = f 
@@ -104,12 +96,6 @@ let whenA b a = if b then a else preturn ()
 
 //let empty<'a> = preturn defaultof<'a>
 
-
-
-
-
-
-
 //open FParsec.CharParsers 
 //
 //// コンピューテーション式で
@@ -119,9 +105,7 @@ let whenA b a = if b then a else preturn ()
 //
 //// Applicative parsingで
 //let foo'' m1 m2 f = f <!> m1 <*> m2
-//
-//
-//
+
 //let readHex a b = 
 //    char <| Byte.Parse(sprintf "%c%c" a b, System.Globalization.NumberStyles.HexNumber)
 //
@@ -130,5 +114,3 @@ let whenA b a = if b then a else preturn ()
 //
 //let a_hex5 : Parser<char, unit> = 
 //    readHex |> pipe2 (skipChar '%' >>. hex) hex
-
-
